@@ -11,6 +11,15 @@ A comprehensive application for managing tax loss harvesting strategies with was
 - **Interactive Dashboard**: Beautiful Streamlit UI with charts and analytics
 - **Demo Data**: Pre-loaded sample portfolio for testing and demonstration
 
+## Project Structure
+
+This project uses a **flat directory structure** where all Python modules are located in the root directory. This simplifies imports and makes the application easier to run and deploy. The main components are:
+
+- **Core Modules**: `main.py`, `models.py`, `logic.py`, `db.py`, `seed.py`
+- **UI**: `streamlit_app.py` for the interactive dashboard
+- **Testing**: `test_wash_sale.py` and `test_imports.py` for validation
+- **Configuration**: `requirements.txt`, `pyproject.toml`, and `uv.lock` for dependencies
+
 ## Quick Start
 
 ### Option 1: Run with Streamlit (Recommended)
@@ -22,7 +31,7 @@ A comprehensive application for managing tax loss harvesting strategies with was
 
 2. **Launch the dashboard**:
    ```bash
-   python run_streamlit.py
+   streamlit run streamlit_app.py
    ```
 
 3. **Open your browser** and navigate to `http://localhost:8501`
@@ -98,22 +107,26 @@ When harvesting losses, you need to purchase replacement securities that:
 - **Models**: Pydantic for data validation
 - **Logic**: Custom wash sale detection algorithms
 - **Database**: SQLite with WAL mode for performance
+- **Structure**: Flat directory structure with all modules in the root directory
 
 ## File Structure
 
 ```
 finai-tax-harvest-wash/
-├── app/
-│   ├── db.py              # Database operations
-│   ├── logic.py           # Business logic and algorithms
-│   ├── main.py            # FastAPI application
-│   ├── models.py          # Pydantic data models
-│   ├── seed.py            # Demo data seeding
-│   └── streamlit_app.py   # Streamlit dashboard
-├── tests/
-│   └── test_wash_sale.py  # Unit tests
+├── main.py                 # FastAPI application
+├── models.py               # Pydantic data models
+├── logic.py                # Business logic and algorithms
+├── db.py                   # Database operations
+├── seed.py                 # Demo data seeding
+├── streamlit_app.py        # Streamlit dashboard
+├── run_streamlit.py        # Streamlit launcher
+├── test_wash_sale.py       # Unit tests
+├── test_imports.py         # Import testing utility
 ├── requirements.txt        # Python dependencies
-├── run_streamlit.py       # Streamlit launcher
+├── pyproject.toml         # Project configuration
+├── uv.lock                # Dependency lock file
+├── tlh.sqlite             # SQLite database
+├── .python-version        # Python version specification
 └── README.md              # This file
 ```
 
@@ -130,9 +143,9 @@ You can adjust the minimum thresholds for tax loss harvesting:
 
 To add your own securities:
 
-1. Use the database functions in `app/db.py`
-2. Follow the data models in `app/models.py`
-3. Update the policy configuration in `app/logic.py`
+1. Use the database functions in `db.py`
+2. Follow the data models in `models.py`
+3. Update the policy configuration in `logic.py`
 
 ## API Endpoints
 
